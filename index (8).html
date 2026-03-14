@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Daksh Trehan — Forward Deployed Engineer</title>
+  <meta name="description" content="Daksh Trehan — Forward Deployed Engineer at Abacus.AI. Snowflake SME, LLM engineer, technical writer with 100k+ readers."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --ivory:   #f8f6f1;
+      --ivory2:  #f0ede6;
+      --ivory3:  #e8e4db;
+      --ink:     #1a1814;
+      --ink2:    #3d3a34;
+      --ink3:    #7a756c;
+      --sage:    #3d6b5e;
+      --sage-lt: #eaf2ef;
+      --gold:    #b07d2e;
+      --border:  rgba(26,24,20,0.09);
+      --shadow:  0 1px 3px rgba(26,24,20,0.06), 0 4px 16px rgba(26,24,20,0.04);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--ivory); color: var(--ink); font-family: 'DM Sans', sans-serif; font-weight: 300; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+
+    /* NAV */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 200; display: flex; align-items: center; justify-content: space-between; padding: 1.4rem 5rem; transition: background .35s, border-color .35s; border-bottom: 1px solid transparent; }
+    nav.scrolled { background: rgba(248,246,241,0.93); backdrop-filter: blur(20px) saturate(180%); border-color: var(--border); }
+    .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.7rem; font-weight: 600; color: var(--sage); text-decoration: none; letter-spacing: .04em; line-height: 1; }
+    .nav-links { display: flex; gap: 2.2rem; list-style: none; }
+    .nav-links a { font-family: 'DM Sans', sans-serif; font-size: 1rem; font-weight: 400; color: var(--ink2); text-decoration: none; letter-spacing: .01em; transition: color .2s; position: relative; }
+    .nav-links a::after { content: ''; position: absolute; bottom: -3px; left: 0; right: 100%; height: 1px; background: var(--sage); transition: right .25s ease; }
+    .nav-links a:hover { color: var(--sage); }
+    .nav-links a:hover::after { right: 0; }
+    .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: .4rem; background: none; border: none; }
+    .nav-hamburger span { display: block; width: 22px; height: 1.5px; background: var(--ink); transition: all .3s; }
+    .mobile-menu { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: var(--ivory); z-index: 300; flex-direction: column; justify-content: center; align-items: center; gap: 2.5rem; }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-weight: 600; color: var(--ink); text-decoration: none; transition: color .2s; }
+    .mobile-menu a:hover { color: var(--sage); }
+    .mobile-close { position: absolute; top: 1.8rem; right: 2rem; font-family: 'JetBrains Mono', monospace; font-size: .8rem; color: var(--ink3); cursor: pointer; background: none; border: none; letter-spacing: .1em; }
+
+    /* HERO */
+    #hero { min-height: 100vh; display: grid; grid-template-columns: 1.2fr 0.8fr; align-items: center; padding: 8rem 5rem 4rem; gap: 6rem; position: relative; overflow: hidden; }
+    #hero::before { content: 'DT'; position: absolute; right: -1rem; bottom: -5rem; font-family: 'Cormorant Garamond', serif; font-size: 28rem; font-weight: 700; color: rgba(26,24,20,0.028); line-height: 1; pointer-events: none; letter-spacing: -0.05em; user-select: none; }
+    .hero-left { position: relative; z-index: 2; }
+    .hero-kicker { display: inline-flex; align-items: center; gap: .6rem; font-family: 'JetBrains Mono', monospace; font-size: .72rem; font-weight: 400; color: var(--sage); letter-spacing: .14em; text-transform: uppercase; margin-bottom: 2.2rem; opacity: 0; animation: fadeUp .7s .15s forwards; }
+    .kicker-pulse { width: 6px; height: 6px; border-radius: 50%; background: var(--sage); animation: dot-pulse 2.2s ease-in-out infinite; }
+    @keyframes dot-pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.3;transform:scale(.6)} }
+    h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(5.5rem, 10vw, 11rem); font-weight: 600; line-height: .88; letter-spacing: -.02em; color: var(--ink); opacity: 0; animation: fadeUp .7s .3s forwards; }
+    h1 .name-last { display: block; font-style: italic; color: var(--sage); font-weight: 500; }
+    .hero-tagline { margin-top: 2rem; font-family: 'JetBrains Mono', monospace; font-size: .85rem; font-weight: 300; color: var(--gold); min-height: 1.4em; opacity: 0; animation: fadeUp .7s .45s forwards; }
+    .cursor-bar { display: inline-block; width: 2px; height: .9em; background: var(--gold); vertical-align: text-bottom; margin-left: 1px; animation: blink 1s infinite; }
+    .hero-desc { margin-top: 1.6rem; font-size: 1.05rem; line-height: 1.8; color: var(--ink2); max-width: 480px; opacity: 0; animation: fadeUp .7s .6s forwards; }
+    .hero-desc strong { color: var(--ink); font-weight: 500; }
+    .hero-cta { display: flex; gap: 1rem; margin-top: 2.8rem; opacity: 0; animation: fadeUp .7s .75s forwards; }
+    .btn { font-family: 'JetBrains Mono', monospace; font-size: .75rem; letter-spacing: .1em; text-transform: uppercase; padding: .95rem 2.2rem; text-decoration: none; transition: all .24s; display: inline-block; cursor: pointer; border: none; }
+    .btn-primary { background: var(--ink); color: var(--ivory); }
+    .btn-primary:hover { background: var(--sage); }
+    .btn-outline { background: transparent; color: var(--ink); border: 1.5px solid var(--border); }
+    .btn-outline:hover { border-color: var(--sage); color: var(--sage); }
+
+    /* Hero stats */
+    .hero-stats { display: flex; flex-direction: column; gap: 2px; opacity: 0; animation: fadeIn 1s .9s forwards; }
+    .stat-card { background: white; border: 1px solid var(--border); padding: 1.4rem 1.8rem; display: flex; align-items: center; justify-content: space-between; box-shadow: var(--shadow); transition: border-color .2s, transform .2s; }
+    .stat-card:first-child { border-radius: 10px 10px 0 0; }
+    .stat-card:last-child { border-radius: 0 0 10px 10px; }
+    .stat-card:hover { border-color: var(--sage); transform: translateX(-2px); }
+    .stat-lbl { font-family: 'JetBrains Mono', monospace; font-size: .62rem; color: var(--ink3); letter-spacing: .1em; text-transform: uppercase; }
+    .stat-sub { font-size: .82rem; color: var(--ink2); margin-top: .1rem; font-weight: 300; }
+    .stat-val { font-family: 'Cormorant Garamond', serif; font-size: 2.6rem; font-weight: 600; color: var(--ink); line-height: 1; }
+    .stat-val em { font-style: normal; color: var(--sage); font-size: 1.3rem; }
+
+    /* SECTIONS */
+    section { padding: 5rem 5rem; }
+    .s-label { font-family: 'JetBrains Mono', monospace; font-size: .68rem; letter-spacing: .2em; text-transform: uppercase; color: var(--sage); margin-bottom: .8rem; }
+    h2.s-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.4rem, 4.5vw, 4.2rem); font-weight: 600; line-height: 1.02; letter-spacing: -.015em; margin-bottom: 2rem; }
+    h2.s-title em { font-style: italic; color: var(--sage); font-weight: 500; }
+
+    /* ABOUT */
+    #about { background: white; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .about-wrap { display: grid; grid-template-columns: 1.1fr .9fr; gap: 6rem; align-items: start; }
+    .about-body p { font-size: 1rem; line-height: 1.85; color: var(--ink2); margin-bottom: 1.1rem; }
+    .about-body p strong { color: var(--ink); font-weight: 500; }
+    .about-body p .accent { color: var(--sage); font-style: italic; }
+    .philosophy { margin-top: 1.8rem; padding: 1.4rem 1.8rem; border-left: 2px solid var(--sage); background: var(--sage-lt); font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-style: italic; color: var(--ink); line-height: 1.5; }
+    .about-right-inner { display: flex; flex-direction: column; gap: 0; }
+    .about-stat-strip { display: grid; grid-template-columns: repeat(2,1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); margin-bottom: 1.8rem; }
+    .about-stat-cell { background: var(--ivory); padding: 1.1rem 1.3rem; }
+    .about-stat-val { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 600; color: var(--ink); line-height: 1; }
+    .about-stat-val em { font-style: normal; color: var(--sage); font-size: 1rem; }
+    .about-stat-lbl { font-family: 'JetBrains Mono', monospace; font-size: .6rem; color: var(--ink3); letter-spacing: .1em; text-transform: uppercase; margin-top: .2rem; }
+    .pill-section { margin-bottom: 1.5rem; }
+    .pill-lbl { font-family: 'JetBrains Mono', monospace; font-size: .62rem; letter-spacing: .14em; text-transform: uppercase; color: var(--ink3); margin-bottom: .7rem; }
+    .pills { display: flex; flex-wrap: wrap; gap: .45rem; }
+    .pill { font-family: 'JetBrains Mono', monospace; font-size: .68rem; padding: .32rem .8rem; border: 1.5px solid var(--border); color: var(--ink2); border-radius: 2px; background: var(--ivory); transition: all .2s; }
+    .pill:hover { border-color: var(--sage); color: var(--sage); }
+    .pill.accent { border-color: rgba(61,107,94,.25); color: var(--sage); background: var(--sage-lt); }
+
+    /* EXPERIENCE */
+    #experience { background: var(--ivory); }
+    .exp-outer { display: flex; flex-direction: column; gap: 2rem; }
+    .exp-block { display: grid; grid-template-columns: 240px 1fr; border: 1px solid var(--border); background: white; box-shadow: var(--shadow); transition: border-color .2s; align-items: stretch; }
+    .exp-block:hover { border-color: rgba(61,107,94,.3); }
+    .exp-block.current { border-color: rgba(61,107,94,.3); }
+    .exp-sidebar { padding: 2rem 1.8rem; border-right: 1px solid var(--border); display: flex; flex-direction: column; }
+    .exp-co-name { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 600; line-height: 1.1; color: var(--ink); }
+    .exp-co-sub { font-size: .82rem; color: var(--ink3); font-weight: 300; margin-top: .2rem; }
+    .exp-co-tenure { font-family: 'JetBrains Mono', monospace; font-size: .6rem; color: var(--ink3); letter-spacing: .04em; margin-top: 1.5rem; line-height: 1.6; }
+    .exp-badge { display: inline-block; margin-top: .6rem; font-family: 'JetBrains Mono', monospace; font-size: .58rem; color: var(--sage); letter-spacing: .1em; text-transform: uppercase; padding: .2rem .6rem; border: 1px solid rgba(61,107,94,.3); background: var(--sage-lt); }
+    .exp-roles { display: flex; flex-direction: column; }
+    .role-item { padding: 1.6rem 2rem; border-bottom: 1px solid var(--border); transition: background .2s; flex: 1; }
+    .role-item:last-child { border-bottom: none; }
+    .role-item:hover { background: var(--ivory); }
+    .role-hd { display: flex; align-items: flex-start; justify-content: space-between; gap: 1.5rem; margin-bottom: .45rem; flex-wrap: wrap; }
+    .role-title { font-family: 'DM Sans', sans-serif; font-size: .95rem; font-weight: 500; color: var(--ink); }
+    .role-right { display: flex; align-items: center; gap: .7rem; flex-wrap: wrap; }
+    .role-badge { font-family: 'JetBrains Mono', monospace; font-size: .58rem; color: var(--gold); letter-spacing: .08em; text-transform: uppercase; padding: .15rem .5rem; border: 1px solid rgba(176,125,46,.25); background: rgba(176,125,46,.06); white-space: nowrap; }
+    .role-date { font-family: 'JetBrains Mono', monospace; font-size: .62rem; color: var(--ink3); white-space: nowrap; }
+    .role-desc { font-size: .88rem; line-height: 1.7; color: var(--ink2); margin-bottom: .9rem; }
+    .role-tags { display: flex; flex-wrap: wrap; gap: .35rem; }
+    .rtag { font-family: 'JetBrains Mono', monospace; font-size: .6rem; padding: .18rem .55rem; background: var(--ivory2); border: 1px solid var(--border); color: var(--ink3); border-radius: 2px; }
+
+    /* AWARD BADGES */
+    .award-badges { display: flex; flex-direction: column; gap: .45rem; margin-top: 1.2rem; }
+    .award-badge { display: flex; align-items: flex-start; gap: .55rem; padding: .6rem .75rem; font-family: 'DM Sans', sans-serif; font-size: .8rem; font-weight: 400; line-height: 1.4; border-radius: 3px; width: 100%; }
+    .award-badge .badge-icon { font-size: .9rem; flex-shrink: 0; margin-top: .05rem; }
+    .award-badge .badge-text { flex: 1; }
+    .award-badge.badge-green { background: var(--sage-lt); border: 1px solid rgba(61,107,94,.25); color: var(--sage); }
+    .award-badge.badge-gold { background: rgba(176,125,46,.07); border: 1px solid rgba(176,125,46,.28); color: #7a5015; }
+    .award-badge.badge-neutral { background: var(--ivory2); border: 1px solid var(--border); color: var(--ink2); }
+
+    /* EDUCATION */
+    #education { background: white; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    .edu-card { background: var(--ivory); border: 1px solid var(--border); padding: 2rem 2.2rem; transition: border-color .2s; }
+    .edu-card:hover { border-color: var(--sage); }
+    .edu-deg { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 600; color: var(--ink); margin-bottom: .2rem; }
+    .edu-field { font-size: .88rem; color: var(--sage); font-style: italic; margin-bottom: .8rem; }
+    .edu-inst { font-family: 'JetBrains Mono', monospace; font-size: .68rem; color: var(--ink3); letter-spacing: .05em; margin-bottom: .25rem; }
+    .edu-date { font-family: 'JetBrains Mono', monospace; font-size: .6rem; color: var(--ink3); margin-bottom: .8rem; }
+    .edu-note { font-size: .85rem; color: var(--ink2); line-height: 1.6; }
+    .edu-tags { display: flex; flex-wrap: wrap; gap: .35rem; margin-top: 1rem; }
+    .edu-tag { font-family: 'JetBrains Mono', monospace; font-size: .6rem; padding: .18rem .55rem; background: var(--sage-lt); border: 1px solid rgba(61,107,94,.18); color: var(--sage); border-radius: 2px; }
+
+    /* PROJECTS */
+    #projects { background: var(--ivory); }
+    .proj-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 1.5rem; }
+    .proj-card { background: white; border: 1px solid var(--border); padding: 2rem 2.2rem; box-shadow: var(--shadow); transition: all .25s; position: relative; overflow: hidden; }
+    .proj-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--sage); transform: scaleX(0); transform-origin: left; transition: transform .35s ease; }
+    .proj-card:hover::before { transform: scaleX(1); }
+    .proj-card:hover { transform: translateY(-3px); box-shadow: 0 8px 32px rgba(26,24,20,0.09); }
+    .proj-idx { font-family: 'JetBrains Mono', monospace; font-size: .62rem; color: var(--ink3); margin-bottom: 1rem; }
+    .proj-name { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 600; color: var(--ink); margin-bottom: .5rem; }
+    .proj-desc { font-size: .88rem; color: var(--ink2); line-height: 1.7; margin-bottom: 1.2rem; }
+    .proj-stack { display: flex; flex-wrap: wrap; gap: .35rem; }
+    .stag { font-family: 'JetBrains Mono', monospace; font-size: .6rem; padding: .2rem .55rem; background: var(--sage-lt); border: 1px solid rgba(61,107,94,.18); color: var(--sage); border-radius: 2px; }
+
+    /* CERTIFICATIONS */
+    #certifications { background: white; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .certs-hd { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 2rem; flex-wrap: wrap; gap: 2rem; }
+    .cert-tally { display: flex; gap: 3rem; }
+    .ct-item { text-align: center; }
+    .ct-num { font-family: 'Cormorant Garamond', serif; font-size: 3rem; font-weight: 600; color: var(--sage); line-height: 1; }
+    .ct-lbl { font-family: 'JetBrains Mono', monospace; font-size: .6rem; color: var(--ink3); letter-spacing: .1em; text-transform: uppercase; margin-top: .2rem; }
+    .cert-block { margin-bottom: 2.5rem; }
+    .cert-block-title { font-family: 'JetBrains Mono', monospace; font-size: .65rem; letter-spacing: .14em; text-transform: uppercase; color: var(--ink3); padding-bottom: .7rem; border-bottom: 1px solid var(--border); margin-bottom: 1rem; }
+    .cert-items { display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; }
+    .cert-item { background: var(--ivory); border: 1.5px solid var(--border); padding: 1.2rem 1.4rem; transition: border-color .2s; }
+    .cert-item:hover { border-color: var(--sage); }
+    .cert-org { font-family: 'JetBrains Mono', monospace; font-size: .58rem; color: var(--sage); letter-spacing: .1em; text-transform: uppercase; margin-bottom: .35rem; }
+    .cert-name { font-size: .88rem; font-weight: 500; color: var(--ink); line-height: 1.35; }
+
+    /* WRITING */
+    #writing { background: var(--ivory); }
+    .writing-hd { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem; }
+    .writing-num { font-family: 'Cormorant Garamond', serif; font-size: 4.5rem; font-weight: 600; color: var(--sage); line-height: 1; }
+    .writing-numlbl { font-family: 'JetBrains Mono', monospace; font-size: .62rem; color: var(--ink3); letter-spacing: .1em; }
+    .w-row { display: flex; align-items: center; justify-content: space-between; padding: 1.2rem 0; border-bottom: 1px solid var(--border); text-decoration: none; color: inherit; gap: 2rem; transition: padding-left .22s; }
+    .w-row:hover { padding-left: .8rem; }
+    .w-title { font-size: .95rem; color: var(--ink); flex: 1; line-height: 1.4; }
+    .w-pub { font-family: 'JetBrains Mono', monospace; font-size: .6rem; color: var(--sage); letter-spacing: .08em; white-space: nowrap; }
+    .w-arr { color: var(--ink3); transition: all .2s; }
+    .w-row:hover .w-arr { color: var(--sage); transform: translateX(4px); }
+
+    /* CONTACT */
+    #contact { background: #1e2e2a; }
+    #contact .s-label { color: rgba(234,242,239,.4); }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; }
+    .contact-hed { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.4rem, 4.5vw, 4.2rem); font-weight: 600; line-height: 1.05; letter-spacing: -.015em; color: #eaf2ef; margin-bottom: 1.5rem; }
+    .contact-hed em { font-style: italic; color: #7ec8b8; }
+    .contact-desc { font-size: 1rem; color: rgba(234,242,239,.62); line-height: 1.8; margin-bottom: 2.5rem; }
+    .c-row { display: flex; align-items: center; justify-content: space-between; padding: 1rem 0; border-bottom: 1px solid rgba(234,242,239,.1); text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: .78rem; letter-spacing: .05em; color: rgba(234,242,239,.58); transition: color .2s; }
+    .c-row:hover { color: #7ec8b8; }
+    .big-quote { padding-top: 3rem; font-family: 'Cormorant Garamond', serif; font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 500; font-style: italic; color: rgba(234,242,239,.25); line-height: 1.45; }
+    .big-quote em { color: rgba(126,200,184,.55); font-style: normal; }
+
+    footer { padding: 1.5rem 5rem; background: #1a2825; border-top: 1px solid rgba(234,242,239,.06); display: flex; justify-content: space-between; align-items: center; }
+    footer p { font-family: 'JetBrains Mono', monospace; font-size: .6rem; color: rgba(234,242,239,.28); letter-spacing: .06em; }
+
+    /* REVEAL */
+    .reveal { opacity: 0; transform: translateY(22px); transition: opacity .65s ease, transform .65s ease; }
+    .reveal.in { opacity: 1; transform: none; }
+    .delay { transition-delay: .12s; }
+
+    @keyframes fadeUp { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:none} }
+    @keyframes fadeIn { from{opacity:0} to{opacity:1} }
+    @keyframes blink { 50%{opacity:0} }
+
+    @media(max-width:960px){
+      nav{padding:1.2rem 2rem}
+      .nav-links{display:none}
+      .nav-hamburger{display:flex}
+      #hero{grid-template-columns:1fr;padding:7rem 2rem 4rem;min-height:auto}
+      #hero::before{font-size:14rem;right:-1rem;bottom:-2rem}
+      .hero-stats{display:none}
+      section{padding:3.5rem 1.5rem}
+      .about-wrap,.contact-grid{grid-template-columns:1fr;gap:2rem}
+      .proj-grid,.edu-grid{grid-template-columns:1fr}
+      .cert-items{grid-template-columns:repeat(2,1fr)}
+      .exp-block{grid-template-columns:1fr}
+      .exp-sidebar{border-right:none;border-bottom:1px solid var(--border)}
+      .about-stat-strip{grid-template-columns:repeat(2,1fr)}
+      .certs-hd{flex-direction:column;align-items:flex-start}
+      .cert-tally{gap:1.5rem}
+      .writing-hd{flex-direction:column;align-items:flex-start}
+      .contact-grid{gap:2rem}
+      footer{flex-direction:column;gap:.5rem;padding:1.5rem 2rem;text-align:center}
+      h1{font-size:clamp(4rem,14vw,6rem)}
+    }
+  </style>
+</head>
+<body>
+
+<nav id="nav">
+  <a class="nav-logo" href="#hero">DT</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#certifications">Certifications</a></li>
+    <li><a href="#writing">Writing</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-menu" id="mobile-menu">
+  <button class="mobile-close" id="mobile-close">✕ close</button>
+  <a href="#about" class="mobile-link">About</a>
+  <a href="#experience" class="mobile-link">Experience</a>
+  <a href="#education" class="mobile-link">Education</a>
+  <a href="#projects" class="mobile-link">Projects</a>
+  <a href="#certifications" class="mobile-link">Certifications</a>
+  <a href="#writing" class="mobile-link">Writing</a>
+  <a href="#contact" class="mobile-link">Contact</a>
+</div>
+
+<section id="hero">
+  <div class="hero-left">
+    <div class="hero-kicker"><span class="kicker-pulse"></span>Delhi, India · Remote · AI-First</div>
+    <h1>Daksh<span class="name-last">Trehan</span></h1>
+    <div class="hero-tagline" id="tagline"><span class="cursor-bar"></span></div>
+    <p class="hero-desc">Building AI systems that work in the real world — not just in notebooks. Currently at <strong>Abacus.AI</strong>, deploying enterprise intelligence at scale.</p>
+    <div class="hero-cta">
+      <a href="#projects" class="btn btn-primary">View Work</a>
+      <a href="#contact" class="btn btn-outline">Get in Touch</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat-card"><div><div class="stat-lbl">Snowflake</div><div class="stat-sub">Certifications</div></div><div class="stat-val">6<em>×</em></div></div>
+    <div class="stat-card"><div><div class="stat-lbl">Dataiku</div><div class="stat-sub">Certifications</div></div><div class="stat-val">5<em>×</em></div></div>
+    <div class="stat-card"><div><div class="stat-lbl">Article</div><div class="stat-sub">Views</div></div><div class="stat-val">100<em>k+</em></div></div>
+    <div class="stat-card"><div><div class="stat-lbl">Years</div><div class="stat-sub">Experience</div></div><div class="stat-val">5<em>+</em></div></div>
+    <div class="stat-card"><div><div class="stat-lbl">Half</div><div class="stat-sub">Marathons</div></div><div class="stat-val">15<em>+</em></div></div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="s-label">About</div>
+  <div class="about-wrap">
+    <div class="about-body reveal">
+      <h2 class="s-title">I build AI that<br><em>actually ships</em></h2>
+      <p>I'm a <strong>Forward Deployed Engineer at Abacus.AI</strong>, working at the intersection of cutting-edge AI and enterprise deployment. My job is to take powerful technology and make it land for clients — from architecture to adoption.</p>
+      <p>Before this, I spent 5 years at <strong>kipi.ai</strong> building production AI across healthcare, energy, insurance, and supply chain: <span class="accent">RAG pipelines</span>, fraud detection systems, document intelligence platforms, and ML models at scale. Clients included ConocoPhillips, Gameday Men's Health, Germania Insurance, and Blue Yonder.</p>
+      <p>I hold an <strong>M.Tech in Data Science from BITS Pilani</strong> and am a technical reviewer for Packt Publishing. When I'm not shipping ML systems, I'm writing for Towards Data Science, running half marathons, or logging gym sessions.</p>
+      <blockquote class="philosophy">"Say yes first. Figure out how later."</blockquote>
+    </div>
+    <div class="reveal delay">
+      <div class="about-right-inner">
+        <div class="about-stat-strip">
+          <div class="about-stat-cell"><div class="about-stat-val">6<em>×</em></div><div class="about-stat-lbl">Snowflake Certs</div></div>
+          <div class="about-stat-cell"><div class="about-stat-val">100<em>k+</em></div><div class="about-stat-lbl">Article Views</div></div>
+          <div class="about-stat-cell"><div class="about-stat-val">5<em>+</em></div><div class="about-stat-lbl">Years Experience</div></div>
+          <div class="about-stat-cell"><div class="about-stat-val">15<em>+</em></div><div class="about-stat-lbl">Half Marathons</div></div>
+        </div>
+        <div class="pill-section">
+          <div class="pill-lbl">AI & GenAI</div>
+          <div class="pills">
+            <span class="pill accent">Agentic AI</span><span class="pill accent">LLMs</span><span class="pill accent">RAG Pipelines</span><span class="pill accent">AI Workflows</span>
+            <span class="pill accent">LangGraph</span><span class="pill accent">Snowflake Cortex AI</span><span class="pill">Anthropic API</span><span class="pill">Prompt Engineering</span>
+          </div>
+        </div>
+        <div class="pill-section">
+          <div class="pill-lbl">Data Science & ML</div>
+          <div class="pills">
+            <span class="pill accent">Machine Learning</span><span class="pill accent">Deep Learning</span><span class="pill">Scikit-learn</span><span class="pill">TensorFlow</span>
+            <span class="pill">SHAP Explainability</span><span class="pill">Anomaly Detection</span><span class="pill">Ensemble Models</span><span class="pill">NLP</span>
+          </div>
+        </div>
+        <div class="pill-section">
+          <div class="pill-lbl">Data Engineering</div>
+          <div class="pills">
+            <span class="pill">FAISS</span><span class="pill">DuckDB</span><span class="pill">Apache Iceberg</span><span class="pill">MLOps</span><span class="pill">Python</span><span class="pill">SQL</span><span class="pill">ETL Pipelines</span>
+          </div>
+        </div>
+        <div class="pill-section">
+          <div class="pill-lbl">Platforms & Tools</div>
+          <div class="pills">
+            <span class="pill">Snowflake</span><span class="pill">Streamlit</span><span class="pill">GitHub Actions</span><span class="pill">Tableau</span><span class="pill">Dataiku</span><span class="pill">Supabase</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="s-label">Experience</div>
+  <h2 class="s-title reveal">Where I've<br><em>worked</em></h2>
+  <div class="exp-outer">
+
+    <div class="exp-block current reveal">
+      <div class="exp-sidebar">
+        <div>
+          <div class="exp-co-name">Abacus.AI</div>
+          <div class="exp-co-sub">San Francisco, CA · Remote</div>
+          <div class="exp-co-tenure">Mar 2026 — Present</div>
+          <div class="exp-badge">● Current</div>
+          <div class="award-badges">
+            <div class="award-badge badge-green"><span class="badge-icon">🏆</span><span class="badge-text">Forbes AI 50 — Top 50 Private AI Companies in North America</span></div>
+            <div class="award-badge badge-gold"><span class="badge-icon">★</span><span class="badge-text">CB Insights AI 100 — Most Promising AI Startups Globally</span></div>
+            <div class="award-badge badge-neutral"><span class="badge-icon">◆</span><span class="badge-text">Gartner Cool Vendor · 100K+ Customers incl. Fortune 500</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="exp-roles">
+        <div class="role-item">
+          <div class="role-hd">
+            <div class="role-title">Forward Deployed Engineer</div>
+            <div class="role-right"><span class="role-date">Mar 2026 — Present</span></div>
+          </div>
+          <div class="role-desc">Abacus.AI is building the world's first end-to-end autonomous AI platform — where AI, not humans, builds and orchestrates enterprise AI workflows at scale. Recognised in the Forbes AI 50, CB Insights AI 100, and adopted by Fortune 500 companies globally. As a Forward Deployed Engineer, I bridge frontier AI and enterprise reality: architecting agentic systems, deploying production AI workflows, and driving adoption of GenAI across client organisations.</div>
+          <div class="role-tags"><span class="rtag">Agentic AI</span><span class="rtag">AI Workflows</span><span class="rtag">GenAI Deployment</span><span class="rtag">LLM Systems</span><span class="rtag">Enterprise AI</span><span class="rtag">MLOps</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-block reveal">
+      <div class="exp-sidebar">
+        <div>
+          <div class="exp-co-name">kipi.ai</div>
+          <div class="exp-co-sub">Texas, USA · Remote</div>
+          <div class="exp-co-tenure">May 2021 — Feb 2026<br/>4 yrs 10 months</div>
+          <div class="award-badges">
+            <div class="award-badge badge-green"><span class="badge-icon">❄</span><span class="badge-text">Snowflake Elite Services Partner</span></div>
+            <div class="award-badge badge-gold"><span class="badge-icon">★</span><span class="badge-text">2025 Snowflake Global Innovation Partner of the Year</span></div>
+            <div class="award-badge badge-gold"><span class="badge-icon">★</span><span class="badge-text">2024 Snowflake Americas Innovation Partner of the Year</span></div>
+            <div class="award-badge badge-gold"><span class="badge-icon">★</span><span class="badge-text">2023 Snowflake Americas Growth Partner of the Year</span></div>
+            <div class="award-badge badge-neutral"><span class="badge-icon">◆</span><span class="badge-text">4× Consecutive Snowflake Partner of the Year · A WNS Company</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="exp-roles">
+
+        <div class="role-item">
+          <div class="role-hd">
+            <div class="role-title">Senior Data Scientist</div>
+            <div class="role-right"><span class="role-badge">↑ Promoted</span><span class="role-date">Jun 2025 — Feb 2026</span></div>
+          </div>
+          <div class="role-desc">Led enterprise AI transformation for Fortune 500 clients in energy and healthcare. At ConocoPhillips: engineered Document AI pipelines processing 2,000+ oil &amp; gas PDFs (42% performance improvement), architected ReconAI — a LangGraph + Cortex reconciliation platform deployed as a Snowflake Native App, built Cortex Analyst Text-to-SQL across 25+ tables, and designed a geological data lakehouse on Apache Iceberg. In healthcare: built ensemble ML fraud detection across 10M+ claims achieving 85%+ precision and 40% fewer false positives.</div>
+          <div class="role-tags"><span class="rtag">LangGraph</span><span class="rtag">Snowflake Cortex AI</span><span class="rtag">Document AI</span><span class="rtag">Apache Iceberg</span><span class="rtag">Native Apps</span><span class="rtag">Fraud Detection</span><span class="rtag">Ensemble ML</span></div>
+        </div>
+
+        <div class="role-item">
+          <div class="role-hd">
+            <div class="role-title">Data Scientist</div>
+            <div class="role-right"><span class="role-badge">↑ Promoted</span><span class="role-date">Apr 2023 — Jun 2025</span></div>
+          </div>
+          <div class="role-desc">Deployed KAIRA, a Slack-integrated enterprise RAG chatbot with 90%+ retrieval precision serving 1,000+ internal users. Built an AutoCAD AI design assistant cutting turnaround by 70%. Led a cross-functional team of 5 delivering a material performance prediction system across 10M+ data points with 85% accuracy and full SHAP explainability for supply chain stakeholders.</div>
+          <div class="role-tags"><span class="rtag">RAG</span><span class="rtag">Cortex Embeddings</span><span class="rtag">SHAP</span><span class="rtag">MLOps</span><span class="rtag">Supply Chain AI</span><span class="rtag">NLP</span></div>
+        </div>
+
+        <div class="role-item">
+          <div class="role-hd">
+            <div class="role-title">Business Intelligence Developer</div>
+            <div class="role-right"><span class="role-date">May 2021 — Mar 2023</span></div>
+          </div>
+          <div class="role-desc">Joined fresh out of college. Migrated 30+ Crystal Reports to Tableau dashboards for Germania Insurance (20% performance improvement, 50+ KPI dashboards). Led MS-SQL to Snowflake migration for Blue Yonder, streamlining supply chain data processes by 20%.</div>
+          <div class="role-tags"><span class="rtag">Tableau</span><span class="rtag">Snowflake</span><span class="rtag">ETL</span><span class="rtag">Data Migration</span><span class="rtag">BI Development</span><span class="rtag">MS-SQL</span></div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="education">
+  <div class="s-label">Education</div>
+  <h2 class="s-title reveal">Academic<br><em>foundation</em></h2>
+  <div class="edu-grid">
+    <div class="edu-card reveal">
+      <div class="edu-deg">Master of Technology</div>
+      <div class="edu-field">Data Science &amp; Engineering</div>
+      <div class="edu-inst">BITS Pilani — WILP</div>
+      <div class="edu-date">Oct 2022 — Sep 2024</div>
+      <div class="edu-note">First Class honours. Thesis on Smart Search using SBERT and ANNOY for semantic similarity at scale. Completed while working full-time across enterprise client engagements.</div>
+      <div class="edu-tags"><span class="edu-tag">SBERT</span><span class="edu-tag">ANNOY</span><span class="edu-tag">Semantic Search</span><span class="edu-tag">First Class</span><span class="edu-tag">Working Professional</span></div>
+    </div>
+    <div class="edu-card reveal delay">
+      <div class="edu-deg">Bachelor of Technology</div>
+      <div class="edu-field">Computer Science &amp; Engineering</div>
+      <div class="edu-inst">GGSIPU — NIEC, Delhi</div>
+      <div class="edu-date">Aug 2017 — May 2021</div>
+      <div class="edu-note">Foundation in algorithms, data structures, and software engineering that launched a career in data science and AI.</div>
+      <div class="edu-tags"><span class="edu-tag">Algorithms</span><span class="edu-tag">Data Structures</span><span class="edu-tag">Computer Science</span><span class="edu-tag">Delhi</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="s-label">Projects</div>
+  <h2 class="s-title reveal">Things I've<br><em>built</em></h2>
+  <div class="proj-grid">
+    <div class="proj-card reveal">
+      <div class="proj-idx">01 — Production</div>
+      <div class="proj-name">ReconAI</div>
+      <div class="proj-desc">LangGraph + Snowflake Cortex AI powered reconciliation platform deployed as a Native App for ConocoPhillips. NL test-case generation, multi-user session isolation, approval workflows, and a Bloomberg-style dashboard.</div>
+      <div class="proj-stack"><span class="stag">LangGraph</span><span class="stag">Cortex AI</span><span class="stag">Mistral Large 2</span><span class="stag">Streamlit</span><span class="stag">Native App</span></div>
+    </div>
+    <div class="proj-card reveal delay">
+      <div class="proj-idx">02 — Live</div>
+      <div class="proj-name">AI Paper Trading System</div>
+      <div class="proj-desc">Automated trading intelligence using the Anthropic API for daily signals across 158 stocks in a virtual ₹10L portfolio. Bloomberg-style HTML dashboard with GitHub Actions automation running every trading day.</div>
+      <div class="proj-stack"><span class="stag">Anthropic API</span><span class="stag">Python</span><span class="stag">GitHub Actions</span><span class="stag">158 Stocks</span></div>
+    </div>
+    <div class="proj-card reveal">
+      <div class="proj-idx">03 — Search</div>
+      <div class="proj-name">Smart Job Search Engine</div>
+      <div class="proj-desc">Hybrid AI-powered job search across 100k+ postings combining FAISS vector search with DuckDB for fast, semantic filtering. Production-grade search architecture demonstrating scalability at scale.</div>
+      <div class="proj-stack"><span class="stag">FAISS</span><span class="stag">DuckDB</span><span class="stag">Vector Search</span><span class="stag">100k Records</span></div>
+    </div>
+    <div class="proj-card reveal delay">
+      <div class="proj-idx">04 — Enterprise</div>
+      <div class="proj-name">Snowflake Data Quality App</div>
+      <div class="proj-desc">Production data quality Native App with 9 configurable validation checks, RBAC, cron scheduling, and email alerting. Published to the Snowflake Marketplace for enterprise-scale self-service data governance.</div>
+      <div class="proj-stack"><span class="stag">Native Apps</span><span class="stag">RBAC</span><span class="stag">Marketplace</span><span class="stag">Streamlit</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="certifications">
+  <div class="s-label">Certifications</div>
+  <div class="certs-hd reveal">
+    <h2 class="s-title" style="margin-bottom:0">Certified<br><em>across platforms</em></h2>
+    <div class="cert-tally">
+      <div class="ct-item"><div class="ct-num">6×</div><div class="ct-lbl">Snowflake</div></div>
+      <div class="ct-item"><div class="ct-num">3×</div><div class="ct-lbl">Dataiku</div></div>
+      <div class="ct-item"><div class="ct-num">2×</div><div class="ct-lbl">Tableau</div></div>
+    </div>
+  </div>
+
+  <div class="cert-block reveal">
+    <div class="cert-block-title">Snowflake — 6 Certifications</div>
+    <div class="cert-items">
+      <div class="cert-item"><div class="cert-org">Snowflake</div><div class="cert-name">SnowPro Advanced: Data Scientist</div></div>
+      <div class="cert-item"><div class="cert-org">Snowflake</div><div class="cert-name">SnowPro Advanced: Architect</div></div>
+      <div class="cert-item"><div class="cert-org">Snowflake</div><div class="cert-name">SnowPro Advanced: Data Engineer</div></div>
+      <div class="cert-item"><div class="cert-org">Snowflake</div><div class="cert-name">SnowPro Core Certified ×2</div></div>
+      <div class="cert-item"><div class="cert-org">Snowflake</div><div class="cert-name">SnowPro Generative AI Specialty</div></div>
+    </div>
+  </div>
+
+  <div class="cert-block reveal">
+    <div class="cert-block-title">Dataiku — 3 Certifications</div>
+    <div class="cert-items">
+      <div class="cert-item"><div class="cert-org">Dataiku</div><div class="cert-name">Advanced Designer Certificate</div></div>
+      <div class="cert-item"><div class="cert-org">Dataiku</div><div class="cert-name">Core Designer Certificate</div></div>
+      <div class="cert-item"><div class="cert-org">Dataiku</div><div class="cert-name">ML Practitioner Certificate</div></div>
+    </div>
+  </div>
+
+  <div class="cert-block reveal">
+    <div class="cert-block-title">Tableau — 2 Certifications</div>
+    <div class="cert-items">
+      <div class="cert-item"><div class="cert-org">Tableau</div><div class="cert-name">Tableau Desktop Specialist</div></div>
+      <div class="cert-item"><div class="cert-org">Tableau</div><div class="cert-name">Tableau Certified Consultant</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="writing">
+  <div class="writing-hd reveal">
+    <div>
+      <div class="s-label">Writing &amp; Recognition</div>
+      <h2 class="s-title" style="margin-bottom:0">Words that<br><em>reached people</em></h2>
+    </div>
+    <div><div class="writing-num">100k+</div><div class="writing-numlbl">collective views</div></div>
+  </div>
+  <div>
+    <a class="w-row reveal" href="https://towardsdatascience.com" target="_blank"><div class="w-title">How does Tinder use ML for matchmaking recommendations?</div><div class="w-pub">Towards Data Science</div><div class="w-arr">→</div></a>
+    <a class="w-row reveal" href="https://towardsdatascience.com" target="_blank"><div class="w-title">The Inescapable AI Algorithm: How TikTok keeps you hooked</div><div class="w-pub">Towards Data Science</div><div class="w-arr">→</div></a>
+    <a class="w-row reveal" href="https://pub.towardsai.net" target="_blank"><div class="w-title">How does Google Maps use Graph Neural Networks?</div><div class="w-pub">Towards AI</div><div class="w-arr">→</div></a>
+    <a class="w-row reveal" href="https://dakshtrehan.medium.com" target="_blank"><div class="w-title">50+ articles across TDS, TowardsAI, DataDrivenInvestor &amp; more</div><div class="w-pub">Multiple Publications</div><div class="w-arr">→</div></a>
+    <a class="w-row reveal" href="https://www.packtpub.com" target="_blank"><div class="w-title">TinyML Cookbook — Technical Reviewer</div><div class="w-pub">Packt Publishing</div><div class="w-arr">→</div></a>
+    <a class="w-row reveal" href="https://www.packtpub.com" target="_blank"><div class="w-title">Machine Learning Engineering with Python — Technical Reviewer</div><div class="w-pub">Packt Publishing</div><div class="w-arr">→</div></a>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="s-label">Contact</div>
+  <div class="contact-grid">
+    <div class="reveal">
+      <div class="contact-hed">Let's build<br><em>something real</em></div>
+      <p class="contact-desc">Whether it's enterprise AI, a Snowflake deep-dive, a writing collaboration, or just a conversation about what's actually happening in GenAI — I'm open to interesting work and interesting people.</p>
+      <div>
+        <a href="mailto:daksh.trehan@hotmail.com" class="c-row">✉ daksh.trehan@hotmail.com <span>→</span></a>
+        <a href="https://linkedin.com/in/dakshtrehan" target="_blank" class="c-row">LinkedIn <span>→</span></a>
+        <a href="https://github.com/dakshtrehan" target="_blank" class="c-row">GitHub <span>→</span></a>
+        <a href="https://dakshtrehan.medium.com" target="_blank" class="c-row">Medium / Writing <span>→</span></a>
+      </div>
+    </div>
+    <div class="reveal delay">
+      <div class="big-quote">Problems that are<br>messy, real,<br><em>and worth solving.</em></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Daksh Trehan. Built with intent.</p>
+  <p>dakshtrehan.com</p>
+</footer>
+
+<script>
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60));
+
+  // Mobile menu
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const mobileClose = document.getElementById('mobile-close');
+  hamburger.addEventListener('click', () => mobileMenu.classList.add('open'));
+  mobileClose.addEventListener('click', () => mobileMenu.classList.remove('open'));
+  document.querySelectorAll('.mobile-link').forEach(a => {
+    a.addEventListener('click', () => mobileMenu.classList.remove('open'));
+  });
+  const obs = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting) e.target.classList.add('in'); }), {threshold:0.07});
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+  const phrases = ['Forward Deployed Engineer · Abacus.AI','Snowflake SME · LLM Builder · Writer','Data Scientist. AI Engineer. Runner.','6× Snowflake Certified · BITS Pilani M.Tech'];
+  let pi=0,ci=0,del=false;
+  const tEl=document.getElementById('tagline');
+  function type(){
+    const p=phrases[pi];
+    if(!del){ci++;tEl.innerHTML=p.slice(0,ci)+'<span class="cursor-bar"></span>';if(ci===p.length){del=true;setTimeout(type,2200);return;}}
+    else{ci--;tEl.innerHTML=p.slice(0,ci)+'<span class="cursor-bar"></span>';if(ci===0){del=false;pi=(pi+1)%phrases.length;}}
+    setTimeout(type,del?28:58);
+  }
+  setTimeout(type,1400);
+</script>
+</body>
+</html>
