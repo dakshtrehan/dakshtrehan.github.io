@@ -102,16 +102,16 @@
     /* EXPERIENCE */
     #experience { background: var(--ivory); }
     .exp-outer { display: flex; flex-direction: column; gap: 2rem; }
-    .exp-block { display: grid; grid-template-columns: 240px 1fr; border: 1px solid var(--border); background: white; box-shadow: var(--shadow); transition: border-color .2s; align-items: stretch; }
+    .exp-block { display: grid; grid-template-columns: 240px 1fr; border: 1px solid var(--border); background: white; box-shadow: var(--shadow); transition: border-color .2s; align-items: stretch; min-height: 100%; }
     .exp-block:hover { border-color: rgba(61,107,94,.3); }
     .exp-block.current { border-color: rgba(61,107,94,.3); }
-    .exp-sidebar { padding: 2rem 1.8rem; border-right: 1px solid var(--border); display: flex; flex-direction: column; }
+    .exp-sidebar { padding: 2rem 1.8rem; border-right: 1px solid var(--border); display: flex; flex-direction: column; justify-content: flex-start; }
     .exp-co-name { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 600; line-height: 1.1; color: var(--ink); }
     .exp-co-sub { font-size: .82rem; color: var(--ink3); font-weight: 300; margin-top: .2rem; }
     .exp-co-tenure { font-family: 'JetBrains Mono', monospace; font-size: .6rem; color: var(--ink3); letter-spacing: .04em; margin-top: 1.5rem; line-height: 1.6; }
     .exp-badge { display: inline-block; margin-top: .6rem; font-family: 'JetBrains Mono', monospace; font-size: .58rem; color: var(--sage); letter-spacing: .1em; text-transform: uppercase; padding: .2rem .6rem; border: 1px solid rgba(61,107,94,.3); background: var(--sage-lt); }
     .exp-roles { display: flex; flex-direction: column; }
-    .role-item { padding: 1.6rem 2rem; border-bottom: 1px solid var(--border); transition: background .2s; flex: 1; }
+    .role-item { padding: 2.8rem 2rem 2rem 2rem; border-bottom: 1px solid var(--border); transition: background .2s; flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
     .role-item:last-child { border-bottom: none; }
     .role-item:hover { background: var(--ivory); }
     .role-hd { display: flex; align-items: flex-start; justify-content: space-between; gap: 1.5rem; margin-bottom: .45rem; flex-wrap: wrap; }
@@ -122,6 +122,12 @@
     .role-desc { font-size: .88rem; line-height: 1.7; color: var(--ink2); margin-bottom: .9rem; }
     .role-tags { display: flex; flex-wrap: wrap; gap: .35rem; }
     .rtag { font-family: 'JetBrains Mono', monospace; font-size: .6rem; padding: .18rem .55rem; background: var(--ivory2); border: 1px solid var(--border); color: var(--ink3); border-radius: 2px; }
+    .focus-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: .7rem; margin: 1.2rem 0; }
+    .focus-cell { background: var(--ivory); border: 1px solid var(--border); padding: .85rem 1rem; border-radius: 3px; transition: border-color .2s; }
+    .focus-cell:hover { border-color: rgba(61,107,94,.3); }
+    .focus-cell-icon { font-size: 1.1rem; margin-bottom: .35rem; }
+    .focus-cell-title { font-family: 'DM Sans', sans-serif; font-size: .8rem; font-weight: 500; color: var(--ink); margin-bottom: .15rem; }
+    .focus-cell-sub { font-family: 'DM Sans', sans-serif; font-size: .75rem; color: var(--ink3); line-height: 1.4; font-weight: 300; }
 
     /* AWARD BADGES */
     .award-badges { display: flex; flex-direction: column; gap: .45rem; margin-top: 1.2rem; }
@@ -263,7 +269,7 @@
 
 <section id="hero">
   <div class="hero-left">
-    <div class="hero-kicker"><span class="kicker-pulse"></span>Delhi, India · Remote · AI-First</div>
+    <div class="hero-kicker"><span class="kicker-pulse"></span>San Francisco Bay Area · Remote · AI-First</div>
     <h1>Daksh<span class="name-last">Trehan</span></h1>
     <div class="hero-tagline" id="tagline"><span class="cursor-bar"></span></div>
     <p class="hero-desc">Building AI systems that work in the real world — not just in notebooks. Currently at <strong>Abacus.AI</strong>, deploying enterprise intelligence at scale.</p>
@@ -272,11 +278,11 @@
       <a href="#contact" class="btn btn-outline">Get in Touch</a>
     </div>
   </div>
-  <div class="hero-stats">
-    <div class="stat-card"><div><div class="stat-lbl">Snowflake</div><div class="stat-sub">Certifications</div></div><div class="stat-val">6<em>×</em></div></div>
-    <div class="stat-card"><div><div class="stat-lbl">Dataiku</div><div class="stat-sub">Certifications</div></div><div class="stat-val">5<em>×</em></div></div>
-    <div class="stat-card"><div><div class="stat-lbl">Article</div><div class="stat-sub">Views</div></div><div class="stat-val">100<em>k+</em></div></div>
+    <div class="hero-stats">
     <div class="stat-card"><div><div class="stat-lbl">Years</div><div class="stat-sub">Experience</div></div><div class="stat-val">5<em>+</em></div></div>
+    <div class="stat-card"><div><div class="stat-lbl">Article</div><div class="stat-sub">Views</div></div><div class="stat-val">100<em>k+</em></div></div>
+    <div class="stat-card"><div><div class="stat-lbl">Projects</div><div class="stat-sub">Shipped</div></div><div class="stat-val">20<em>+</em></div></div>
+    <div class="stat-card"><div><div class="stat-lbl">Snowflake</div><div class="stat-sub">Certifications</div></div><div class="stat-val">6<em>×</em></div></div>
     <div class="stat-card"><div><div class="stat-lbl">Half</div><div class="stat-sub">Marathons</div></div><div class="stat-val">15<em>+</em></div></div>
   </div>
 </section>
@@ -294,10 +300,10 @@
     <div class="reveal delay">
       <div class="about-right-inner">
         <div class="about-stat-strip">
-          <div class="about-stat-cell"><div class="about-stat-val">6<em>×</em></div><div class="about-stat-lbl">Snowflake Certs</div></div>
-          <div class="about-stat-cell"><div class="about-stat-val">100<em>k+</em></div><div class="about-stat-lbl">Article Views</div></div>
           <div class="about-stat-cell"><div class="about-stat-val">5<em>+</em></div><div class="about-stat-lbl">Years Experience</div></div>
-          <div class="about-stat-cell"><div class="about-stat-val">15<em>+</em></div><div class="about-stat-lbl">Half Marathons</div></div>
+          <div class="about-stat-cell"><div class="about-stat-val">100<em>k+</em></div><div class="about-stat-lbl">Article Views</div></div>
+          <div class="about-stat-cell"><div class="about-stat-val">20<em>+</em></div><div class="about-stat-lbl">Projects Shipped</div></div>
+          <div class="about-stat-cell"><div class="about-stat-val">6<em>×</em></div><div class="about-stat-lbl">Snowflake Certs</div></div>
         </div>
         <div class="pill-section">
           <div class="pill-lbl">AI & GenAI</div>
@@ -343,8 +349,10 @@
           <div class="exp-co-tenure">Mar 2026 — Present</div>
           <div class="exp-badge">● Current</div>
           <div class="award-badges">
-            <div class="award-badge badge-green"><span class="badge-icon">🏆</span><span class="badge-text">Forbes AI 50 — Top 50 Private AI Companies in North America</span></div>
+            <div class="award-badge badge-green"><span class="badge-icon">🏆</span><span class="badge-text">Forbes — America's Best Startup Employers 2026</span></div>
+            <div class="award-badge badge-gold"><span class="badge-icon">★</span><span class="badge-text">Forbes AI 50 — Top 50 Private AI Companies in North America</span></div>
             <div class="award-badge badge-gold"><span class="badge-icon">★</span><span class="badge-text">CB Insights AI 100 — Most Promising AI Startups Globally</span></div>
+            <div class="award-badge badge-gold"><span class="badge-icon">★</span><span class="badge-text">eWeek 100 Best AI Companies 2025</span></div>
             <div class="award-badge badge-neutral"><span class="badge-icon">◆</span><span class="badge-text">Gartner Cool Vendor · 100K+ Customers incl. Fortune 500</span></div>
           </div>
         </div>
@@ -355,8 +363,17 @@
             <div class="role-title">Forward Deployed Engineer</div>
             <div class="role-right"><span class="role-date">Mar 2026 — Present</span></div>
           </div>
-          <div class="role-desc">Abacus.AI is building the world's first end-to-end autonomous AI platform — where AI, not humans, builds and orchestrates enterprise AI workflows at scale. Recognised in the Forbes AI 50, CB Insights AI 100, and adopted by Fortune 500 companies globally. As a Forward Deployed Engineer, I bridge frontier AI and enterprise reality: architecting agentic systems, deploying production AI workflows, and driving adoption of GenAI across client organisations.</div>
-          <div class="role-tags"><span class="rtag">Agentic AI</span><span class="rtag">AI Workflows</span><span class="rtag">GenAI Deployment</span><span class="rtag">LLM Systems</span><span class="rtag">Enterprise AI</span><span class="rtag">MLOps</span></div>
+          <div class="role-desc">Abacus.AI is building <em>the world's best AI super assistant</em> — a platform where AI, not humans, builds and orchestrates enterprise workflows at scale. Their flagship products, ChatLLM and DeepAgent, give professionals and enterprises one place to access every frontier model (GPT-5, Claude, Gemini, Grok) and automate pretty much any task. Recognised in Forbes AI 50, CB Insights AI 100, eWeek 100 Best AI Companies, and adopted by Fortune 500 companies globally.</div>
+          <div class="role-desc" style="margin-top:.8rem;">As a Forward Deployed Engineer, I bridge that platform and enterprise reality — every engagement starts with a real business problem and ends with AI running in production. The work spans autonomous agents, multi-tool chatbots, RAG systems, demand forecasting, NER pipelines, predictive modelling, and custom AI workflows deployed at scale.</div>
+          <div class="focus-grid">
+            <div class="focus-cell"><div class="focus-cell-icon">💬</div><div class="focus-cell-title">ChatLLM</div><div class="focus-cell-sub">All frontier models in one super assistant</div></div>
+            <div class="focus-cell"><div class="focus-cell-icon">🕵️</div><div class="focus-cell-title">DeepAgent</div><div class="focus-cell-sub">Autonomous agents that do the actual work</div></div>
+            <div class="focus-cell"><div class="focus-cell-icon">🤖</div><div class="focus-cell-title">Autonomous Agents</div><div class="focus-cell-sub">Multi-tool AI that reasons & acts end-to-end</div></div>
+            <div class="focus-cell"><div class="focus-cell-icon">🔍</div><div class="focus-cell-title">RAG & Knowledge</div><div class="focus-cell-sub">Enterprise retrieval at scale</div></div>
+            <div class="focus-cell"><div class="focus-cell-icon">📊</div><div class="focus-cell-title">Predictive ML</div><div class="focus-cell-sub">Forecasting, classification, anomaly detection</div></div>
+            <div class="focus-cell"><div class="focus-cell-icon">⚙️</div><div class="focus-cell-title">AI Workflows</div><div class="focus-cell-sub">Prototype to production, fast</div></div>
+          </div>
+          <div class="role-tags"><span class="rtag">Agentic AI</span><span class="rtag">AI Workflows</span><span class="rtag">GenAI Deployment</span><span class="rtag">LLM Systems</span><span class="rtag">Enterprise AI</span><span class="rtag">RAG</span><span class="rtag">MLOps</span><span class="rtag">NER</span><span class="rtag">Forecasting</span></div>
         </div>
       </div>
     </div>
@@ -369,10 +386,10 @@
           <div class="exp-co-tenure">May 2021 — Feb 2026<br/>4 yrs 10 months</div>
           <div class="award-badges">
             <div class="award-badge badge-green"><span class="badge-icon">❄</span><span class="badge-text">Snowflake Elite Services Partner</span></div>
+            <div class="award-badge badge-green"><span class="badge-icon">❄</span><span class="badge-text">Snowflake Cortex Code Preferred Partner 2026</span></div>
+            <div class="award-badge badge-gold"><span class="badge-icon">★</span><span class="badge-text">3× Snowflake Americas Innovation & Growth Partner of the Year</span></div>
             <div class="award-badge badge-gold"><span class="badge-icon">★</span><span class="badge-text">2025 Snowflake Global Innovation Partner of the Year</span></div>
-            <div class="award-badge badge-gold"><span class="badge-icon">★</span><span class="badge-text">2024 Snowflake Americas Innovation Partner of the Year</span></div>
-            <div class="award-badge badge-gold"><span class="badge-icon">★</span><span class="badge-text">2023 Snowflake Americas Growth Partner of the Year</span></div>
-            <div class="award-badge badge-neutral"><span class="badge-icon">◆</span><span class="badge-text">4× Consecutive Snowflake Partner of the Year · A WNS Company</span></div>
+            <div class="award-badge badge-neutral"><span class="badge-icon">◆</span><span class="badge-text">4× Consecutive Snowflake Partner of the Year</span></div>
           </div>
         </div>
       </div>
@@ -418,7 +435,7 @@
     <div class="edu-card reveal">
       <div class="edu-deg">Master of Technology</div>
       <div class="edu-field">Data Science &amp; Engineering</div>
-      <div class="edu-inst">BITS Pilani — WILP</div>
+      <div class="edu-inst">Birla Institute of Technology & Science (BITS), Pilani — WILP</div>
       <div class="edu-date">Oct 2022 — Sep 2024</div>
       <div class="edu-note">First Class honours. Thesis on Smart Search using SBERT and ANNOY for semantic similarity at scale. Completed while working full-time across enterprise client engagements.</div>
       <div class="edu-tags"><span class="edu-tag">SBERT</span><span class="edu-tag">ANNOY</span><span class="edu-tag">Semantic Search</span><span class="edu-tag">First Class</span><span class="edu-tag">Working Professional</span></div>
@@ -426,7 +443,7 @@
     <div class="edu-card reveal delay">
       <div class="edu-deg">Bachelor of Technology</div>
       <div class="edu-field">Computer Science &amp; Engineering</div>
-      <div class="edu-inst">GGSIPU — NIEC, Delhi</div>
+      <div class="edu-inst">Guru Gobind Singh Indraprastha University (GGSIPU) — Northern India Engineering College (NIEC), Delhi</div>
       <div class="edu-date">Aug 2017 — May 2021</div>
       <div class="edu-note">Foundation in algorithms, data structures, and software engineering that launched a career in data science and AI.</div>
       <div class="edu-tags"><span class="edu-tag">Algorithms</span><span class="edu-tag">Data Structures</span><span class="edu-tag">Computer Science</span><span class="edu-tag">Delhi</span></div>
@@ -438,30 +455,63 @@
   <div class="s-label">Projects</div>
   <h2 class="s-title reveal">Things I've<br><em>built</em></h2>
   <div class="proj-grid">
+
     <div class="proj-card reveal">
-      <div class="proj-idx">01 — Production</div>
+      <div class="proj-idx">01 — Production · Fortune 500</div>
       <div class="proj-name">ReconAI</div>
-      <div class="proj-desc">LangGraph + Snowflake Cortex AI powered reconciliation platform deployed as a Native App for ConocoPhillips. NL test-case generation, multi-user session isolation, approval workflows, and a Bloomberg-style dashboard.</div>
+      <div class="proj-desc">LangGraph + Snowflake Cortex AI powered reconciliation platform deployed as a Native App for ConocoPhillips. NL test-case generation, multi-user session isolation, approval workflows, and a Bloomberg-style dashboard — serving enterprise energy clients at scale.</div>
       <div class="proj-stack"><span class="stag">LangGraph</span><span class="stag">Cortex AI</span><span class="stag">Mistral Large 2</span><span class="stag">Streamlit</span><span class="stag">Native App</span></div>
     </div>
+
     <div class="proj-card reveal delay">
-      <div class="proj-idx">02 — Live</div>
-      <div class="proj-name">AI Paper Trading System</div>
-      <div class="proj-desc">Automated trading intelligence using the Anthropic API for daily signals across 158 stocks in a virtual ₹10L portfolio. Bloomberg-style HTML dashboard with GitHub Actions automation running every trading day.</div>
-      <div class="proj-stack"><span class="stag">Anthropic API</span><span class="stag">Python</span><span class="stag">GitHub Actions</span><span class="stag">158 Stocks</span></div>
+      <div class="proj-idx">02 — Enterprise · 1,000+ Users</div>
+      <div class="proj-name">KAIRA — Enterprise RAG Chatbot</div>
+      <div class="proj-desc">Slack-integrated enterprise RAG chatbot with 90%+ retrieval precision serving 1,000+ internal users. Built on Snowflake Cortex Embeddings with a custom retrieval pipeline, session memory, and multi-domain knowledge coverage.</div>
+      <div class="proj-stack"><span class="stag">RAG</span><span class="stag">Cortex Embeddings</span><span class="stag">Slack</span><span class="stag">Snowflake</span><span class="stag">LLM</span></div>
     </div>
+
     <div class="proj-card reveal">
-      <div class="proj-idx">03 — Search</div>
-      <div class="proj-name">Smart Job Search Engine</div>
-      <div class="proj-desc">Hybrid AI-powered job search across 100k+ postings combining FAISS vector search with DuckDB for fast, semantic filtering. Production-grade search architecture demonstrating scalability at scale.</div>
-      <div class="proj-stack"><span class="stag">FAISS</span><span class="stag">DuckDB</span><span class="stag">Vector Search</span><span class="stag">100k Records</span></div>
+      <div class="proj-idx">03 — AI Agent · Abacus.AI</div>
+      <div class="proj-name">Daksh AI OS</div>
+      <div class="proj-desc">Personal AI operating system — a multi-tool autonomous agent built on Abacus.AI. Connects to RAG, SQL, REST APIs, and Feature Groups to reason across data sources, answer complex queries, and automate daily workflows end-to-end.</div>
+      <div class="proj-stack"><span class="stag">Abacus.AI</span><span class="stag">Multi-tool Agent</span><span class="stag">RAG</span><span class="stag">REST APIs</span><span class="stag">Feature Groups</span></div>
     </div>
+
     <div class="proj-card reveal delay">
-      <div class="proj-idx">04 — Enterprise</div>
+      <div class="proj-idx">04 — Creative AI · Music</div>
+      <div class="proj-name">SWAR</div>
+      <div class="proj-desc">AI music composition studio with an Artist Skill Library — install any artist's complete musical DNA (ragas, vocal style, lyrical devices, themes). A 6-step lyric funnel generates bilingual Punjabi/Hindustani lyrics across 5 distinct arrangements. Claude composes custom melodies per lyric, Tone.js plays them live, and Suno AI integration exports properly formatted prompts for audio generation.</div>
+      <div class="proj-stack"><span class="stag">Anthropic API</span><span class="stag">Tone.js</span><span class="stag">Suno AI</span><span class="stag">React</span><span class="stag">NLP</span><span class="stag">Music Theory</span></div>
+    </div>
+
+    <div class="proj-card reveal">
+      <div class="proj-idx">05 — Live · Automated Daily</div>
+      <div class="proj-name">AI Paper Trading System</div>
+      <div class="proj-desc">Automated trading intelligence using the Anthropic API for daily signals across 162 stocks in a virtual ₹10L portfolio. Bloomberg-style HTML dashboard with GitHub Actions automation running every trading day.</div>
+      <div class="proj-stack"><span class="stag">Anthropic API</span><span class="stag">Python</span><span class="stag">Supabase</span><span class="stag">GitHub Actions</span><span class="stag">162 Stocks</span></div>
+    </div>
+
+    <div class="proj-card reveal delay">
+      <div class="proj-idx">06 — Enterprise · Marketplace</div>
       <div class="proj-name">Snowflake Data Quality App</div>
       <div class="proj-desc">Production data quality Native App with 9 configurable validation checks, RBAC, cron scheduling, and email alerting. Published to the Snowflake Marketplace for enterprise-scale self-service data governance.</div>
       <div class="proj-stack"><span class="stag">Native Apps</span><span class="stag">RBAC</span><span class="stag">Marketplace</span><span class="stag">Streamlit</span></div>
     </div>
+
+    <div class="proj-card reveal">
+      <div class="proj-idx">07 — Search · 100k+ Records</div>
+      <div class="proj-name">Smart Job Search Engine</div>
+      <div class="proj-desc">Hybrid AI-powered job search across 100k+ postings combining FAISS vector search with DuckDB for fast semantic filtering. Built as a take-home system demonstrating production-grade search architecture at scale.</div>
+      <div class="proj-stack"><span class="stag">FAISS</span><span class="stag">DuckDB</span><span class="stag">Vector Search</span><span class="stag">Python</span><span class="stag">100k Records</span></div>
+    </div>
+
+    <div class="proj-card reveal delay">
+      <div class="proj-idx">08 — Dev Tool · LLM Ops</div>
+      <div class="proj-name">PromptDiff</div>
+      <div class="proj-desc">A prompt versioning and comparison tool for LLM engineers. Side-by-side diff of prompt versions with token-level change highlighting, output comparison across models, and regression tracking to catch when a prompt change breaks an existing behaviour.</div>
+      <div class="proj-stack"><span class="stag">Open Source</span><span class="stag">LLM Tooling</span><span class="stag">Prompt Engineering</span><span class="stag">React</span><span class="stag">Python</span><span class="stag">Diff Algorithms</span></div>
+    </div>
+
   </div>
 </section>
 
